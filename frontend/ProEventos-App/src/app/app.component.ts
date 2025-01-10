@@ -4,8 +4,8 @@ import { EventosComponent } from './eventos/eventos.component';
 import { PalestrantesComponent } from './palestrantes/palestrantes.component';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
+  selector: 'app-root',
   imports: [RouterOutlet, EventosComponent, PalestrantesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

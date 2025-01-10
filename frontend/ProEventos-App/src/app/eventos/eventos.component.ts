@@ -4,8 +4,8 @@ import { error } from 'console';
 import { response } from 'express';
 
 @Component({
-  selector: 'app-eventos',
   standalone: true,
+  selector: 'app-eventos',
   imports: [],
   templateUrl: './eventos.component.html',
   styleUrl: './eventos.component.scss',
