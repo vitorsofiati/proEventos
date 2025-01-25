@@ -1,12 +1,15 @@
 <h2>Eventos</h2>
 <hr />
 
-<form action="" class="form-inline">
-  <div class="form-group mb-2">
-    <input type="text" class="form-control mr-2" placeholder="buscar" />
-    <button class="btn btn-outline-success">Buscar</button>
-  </div>
-</form>
+<div class="form-group mb-2 row">
+  <label for="" class="ms-2 mt-2 col-1">Filtro:</label>
+  <input
+    type="text"
+    class="form-control col"
+    placeholder="buscar"
+    [(ngModel)]="filtroLista"
+  />
+</div>
 
 <table class="table table-striped">
   <thead class="table-dark">
@@ -29,9 +32,9 @@
       <th>Opções</th>
     </tr>
   </thead>
-  @if (eventos && eventos.length) {
+  @if (eventos) {
   <tbody>
-    @for (evento of eventos; track $index) {
+    @for (evento of eventosFiltrados; track $index) {
     <tr>
       <td>
         <img
@@ -47,7 +50,12 @@
       <td>{{ evento.dataEvento }}</td>
       <td>{{ evento.qtd }}</td>
       <td>{{ evento.lote }}</td>
-      <td>Opções</td>
+      <td>
+        <button type="button" class="me-2 btn btn-primary btn-sm">
+          Editar
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+      </td>
     </tr>
     }
   </tbody>
