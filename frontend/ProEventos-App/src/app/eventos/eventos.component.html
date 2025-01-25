@@ -1,7 +1,71 @@
-<h1>Eventos</h1>
-
-@for (evento of eventos; track $index) {
-<p>Tema: {{ evento.tema }}</p>
-<p>Evento: {{ evento.local }}</p>
+<h2>Eventos</h2>
 <hr />
-}
+
+<div class="form-group mb-2 row">
+  <label for="" class="ms-2 mt-2 col-1">Filtro:</label>
+  <input
+    type="text"
+    class="form-control col"
+    placeholder="buscar"
+    [(ngModel)]="filtroLista"
+  />
+</div>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>
+        <button
+          type="button"
+          class="btn btn-outline-light btn-sm"
+          (click)="alterarImagem()"
+        >
+          {{ imagemVisivel ? "Ocultar" : "Exibir" }}
+        </button>
+      </th>
+      <th>#</th>
+      <th>Tema</th>
+      <th>Local</th>
+      <th>Data</th>
+      <th>Qtd Pessoas</th>
+      <th>Lote</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  @if (eventos) {
+  <tbody>
+    @for (evento of eventosFiltrados; track $index) {
+    <tr>
+      <td>
+        <img
+          [collapse]="!imagemVisivel"
+          [isAnimated]="true"
+          src="/{{ evento.imagemUrl }}"
+          loading="lazy"
+        />
+      </td>
+      <td>{{ evento.eventoId }}</td>
+      <td>{{ evento.tema }}</td>
+      <td>{{ evento.local }}</td>
+      <td>{{ evento.dataEvento }}</td>
+      <td>{{ evento.qtd }}</td>
+      <td>{{ evento.lote }}</td>
+      <td>
+        <button type="button" class="me-2 btn btn-primary btn-sm">
+          Editar
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+  } @else {
+  <tfoot>
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>Nenhum evento encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
+  }
+</table>
